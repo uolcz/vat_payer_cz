@@ -1,0 +1,10 @@
+version: "2"
+options:
+  verbose: true
+  compose-file-path: 'docker-compose.yml'
+syncs:
+  vat_info-sync:
+    src: './'
+    sync_strategy: 'native_osx'
+    sync_excludes: ['.git/']
+    watch_excludes: ['.git/']

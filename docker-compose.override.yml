@@ -1,0 +1,13 @@
+version: "2"
+
+volumes:
+  vat_info-sync:
+    external: true
+  gem_store_235:
+    external: true
+
+services:
+  web:
+    volumes:
+      - .:/vat_info
+      - vat_info-sync:/vat_info:nocopy

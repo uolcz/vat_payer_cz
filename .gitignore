@@ -1,0 +1,11 @@
+/.bundle/
+/Gemfile.lock
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
+/*.gem
+.docker-sync/
+.git
+.DS_Store

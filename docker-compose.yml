@@ -1,0 +1,15 @@
+version: "2"
+
+volumes:
+  gem_store_235:
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash
+    tty: true
+    stdin_open: true
+    volumes:
+      - gem_store_235:/gems
