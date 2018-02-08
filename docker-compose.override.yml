@@ -1,0 +1,12 @@
+version: "2"
+
+volumes:
+  vat_payer_cz-sync:
+    external: true
+  gem_store_235:
+    external: true
+
+services:
+  web:
+    volumes:
+      - vat_payer_cz-sync:/vat_payer_cz:nocopy
