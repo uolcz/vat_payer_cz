@@ -1,6 +1,6 @@
 FROM uolcz/ruby:latest
 
-ENV APPDIR /vat_info
+ENV APPDIR /vat_payer_cz
 RUN mkdir $APPDIR
 WORKDIR $APPDIR
 

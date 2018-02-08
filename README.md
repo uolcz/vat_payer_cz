@@ -14,6 +14,8 @@ This gem currently implements 'standard VAT payer info'.
 
 # Standard VAT payer info
 ```ruby
+require 'vat_info'
+
 vat_ids = %w(CZ27169278 CZ26168685)
 VatInfo.unreliable_payer(*vat_ids)
 ```
