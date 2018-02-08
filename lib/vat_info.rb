@@ -23,10 +23,12 @@ module VatInfo
   end
 
   def self.unreliable_payer_extended
-    # endpoint = :get_status_nespolehlivy_platce_rozsireny
+    # :get_status_nespolehlivy_platce_rozsireny
+    raise NotImplementedError
   end
 
   def self.unreliable_payer_list
-    # endpoint = :get_seznam_nespolehlivy_platce
+    # :get_seznam_nespolehlivy_platce
+    raise NotImplementedError
   end
 end

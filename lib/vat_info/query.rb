@@ -22,7 +22,7 @@ module VatInfo
         VatInfo::Response.new(status_code: 408)
       rescue Savon::SOAPFault => e
         raise SchemaError, 'The SOAP schema of VAT service may have changed. Go to '\
-                                "#{DOCS} to verify. Original error: #{e}"
+                           "#{DOCS} to verify. Original error: #{e}"
       end
     end
   end

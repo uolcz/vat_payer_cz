@@ -6,10 +6,10 @@ module VatInfo
       def initialize(params)
         @data                       = {}
         @data[:nespolehlivy_platce] = params.fetch(:@nespolehlivy_platce)
-        @data[:datum_zverejneni]    = params.fetch(:@datum_zverejneni_nespolehlivosti, nil)
         @data[:dic]                 = params.fetch(:@dic)
-        @data[:cislo_fu]            = params.fetch(:@cislo_fu, nil)
-        accounts                    = params.fetch(:zverejnene_ucty, nil)
+        @data[:datum_zverejneni]    = params[:@datum_zverejneni_nespolehlivosti]
+        @data[:cislo_fu]            = params[:@cislo_fu]
+        accounts                    = params[:zverejnene_ucty]
         @data[:ucty]                = accounts ? create_accounts(accounts[:ucet]) : {}
       rescue KeyError => e
         raise InvalidStructure, "Response XML is missing required attributes.\n" \
@@ -19,29 +19,29 @@ module VatInfo
 
       def create_accounts(accounts)
         VatInfo::Utils.wrap_in_array(accounts).map do |account|
-            standard     = account.fetch(:standardni_ucet, nil)
-            non_standard = account.fetch(:nestandardni_ucet, nil)
+          standard     = account[:standardni_ucet]
+          non_standard = account[:nestandardni_ucet]
 
-            params = standard ? standard_account(standard) : non_standard_account(non_standard)
-            params.merge(datum_zverejneni: account[:@datum_zverejneni])
+          params = standard ? standard_account(standard) : non_standard_account(non_standard)
+          params.merge(datum_zverejneni: account[:@datum_zverejneni])
         end
       end
 
       def standard_account(data)
         {
-          predcisli: data.fetch(:@predcisli, nil),
-          cislo: data.fetch(:@cislo, nil),
-          kod_banky: data.fetch(:@kod_banky, nil),
-          iban: nil
+          predcisli:  data[:@predcisli],
+          cislo:      data[:@cislo],
+          kod_banky:  data[:@kod_banky],
+          iban:       nil
         }
       end
 
       def non_standard_account(data)
         {
-          predcisli: nil,
-          cislo: nil,
-          kod_banky: nil,
-          iban: data.fetch(:@cislo, nil)
+          predcisli:  nil,
+          cislo:      nil,
+          kod_banky:  nil,
+          iban:       data[:@cislo]
         }
       end
     end
