@@ -12,10 +12,9 @@ module VatInfo
 
     def self.normalize(string)
       return unless string
-      string = replace_exceptions(string).strip.split(' ').map do |word|
+      replace_exceptions(string).strip.split(' ').map do |word|
         format_this word
       end.join(' ')
-      replace_special_chars(string)
     end
 
     def self.replace_special_chars(string)
@@ -33,7 +32,7 @@ module VatInfo
     def self.format_this(string)
       return string.downcase if string.size == 1
       return string.downcase if COMPANY_TYPES.include? string.downcase
-      string.capitalize
+      replace_special_chars(string.capitalize)
     end
   end
 end
