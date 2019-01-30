@@ -11,8 +11,8 @@ module VatInfo
 
       def create_status
         {
-          status_code:        params.fetch(:@status_code),
-          status_text:        params.fetch(:@status_text),
+          status_code: params.fetch(:@status_code),
+          status_text: params.fetch(:@status_text),
           odpoved_generovana: params.fetch(:@odpoved_generovana)
         }
       rescue KeyError => e

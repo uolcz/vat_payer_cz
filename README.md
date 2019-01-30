@@ -8,9 +8,7 @@ This is Ruby wrapper for [web service for "searching information about reliabili
 The web service has the following three end-points:
 - [standard VAT payer info](#standard)
 - [extended VAT payer info](#extended)
-- list of unreliable VAT payers (not implemented)
-
-This gem currently implements **standard VAT payer info** and **extended VAT payer info**.
+- [list of unreliable VAT payers](#list)
 
 ## <a name="standard">Standard VAT payer info</a>
 ```ruby
@@ -27,6 +25,15 @@ require 'vat_info'
 
 vat_ids = %w(CZ27169278 CZ26168685)
 VatInfo.unreliable_payer_extended(*vat_ids)
+```
+## <a name="list">List VAT payers</a>
+Lists all unreliable VAT payers, but only their status as payer (reliable/unreliable),
+their VAT number, financial office they belong to and date on which they became
+unreliable
+```ruby
+require 'vat_info'
+
+VatInfo.unreliable_payer_list
 ```
 
 ## Response
