@@ -154,12 +154,6 @@ Lint/UnifiedInteger:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-Lint/UnneededDisable:
-  Exclude:
-    - 'app/queries/query/budget_by_days.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 Lint/UnneededSplatExpansion:
   Exclude:
     - 'app/api/v1/sales_orders.rb'

@@ -37,4 +37,15 @@ describe VatInfo do
       end
     end
   end
+
+  describe '#unreliable_payer_list' do
+    it 'fetches list of all VAT payers' do
+      VCR.use_cassette('vat_info_unreliable_payer_list') do
+        response = VatInfo.unreliable_payer_list
+
+        expect(response).to be_a VatInfo::Response
+        expect(response.status_code).to eq 200
+      end
+    end
+  end
 end

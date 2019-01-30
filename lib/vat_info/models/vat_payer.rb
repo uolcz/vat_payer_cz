@@ -29,19 +29,19 @@ module VatInfo
 
       def standard_account(data)
         {
-          predcisli:  data[:@predcisli],
-          cislo:      data[:@cislo],
-          kod_banky:  data[:@kod_banky],
-          iban:       nil
+          predcisli: data[:@predcisli],
+          cislo: data[:@cislo],
+          kod_banky: data[:@kod_banky],
+          iban: nil
         }
       end
 
       def non_standard_account(data)
         {
-          predcisli:  nil,
-          cislo:      nil,
-          kod_banky:  nil,
-          iban:       data[:@cislo]
+          predcisli: nil,
+          cislo: nil,
+          kod_banky: nil,
+          iban: data[:@cislo]
         }
       end
     end

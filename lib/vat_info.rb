@@ -43,7 +43,18 @@ module VatInfo
   end
 
   def self.unreliable_payer_list
-    # :get_seznam_nespolehlivy_platce
-    raise NotImplementedError
+    request  = VatInfo::Request::UnreliablePayerList.new.to_xml
+    response = VatInfo::Query.call(request, :get_seznam_nespolehlivy_platce)
+
+    if response.ok?
+      status_raw    = response.raw[:seznam_nespolehlivy_platce_response][:status]
+      status        = VatInfo::Models::Status.new(status_raw).data
+
+      payers_raw    = VatInfo::Utils.wrap_in_array(response.raw[:seznam_nespolehlivy_platce_response][:status_platce_dph])
+      payers        = VatInfo::Models::VatPayers.new(VatInfo::Models::VatPayerExtended, payers_raw).data
+
+      response.body = status.merge(payers)
+    end
+    response
   end
 end
